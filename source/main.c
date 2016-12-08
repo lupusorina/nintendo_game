@@ -5,11 +5,14 @@
 
 #include <nds.h>
 #include <stdio.h>
+#include "background_sub.h"
 
 int main(void) {
 	
     consoleDemoInit();
-    printf("\nTemplate nds\n");
+
+    init_background_sub();
+    store_image_background_sub();
 
     while(1)
         swiWaitForVBlank();	

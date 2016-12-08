@@ -11,8 +11,6 @@ SET(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall")
 
 add_executable(
     unittests
-    ./source/main.c
-    ./source/tests/nds_mock.cpp
     ./source/tests/runner.cpp
     ./source/tests/test.cpp
     )

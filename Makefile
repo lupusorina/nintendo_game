@@ -150,9 +150,9 @@ soundbank.bin : $(AUDIOFILES)
 	@mmutil $^ -osoundbank.bin -hsoundbank.h -d
 
 #---------------------------------------------------------------------------------
-%.s %.h	: %.png %.grit
+#%.s %.h	: %.png %.grit
 #---------------------------------------------------------------------------------
-	grit $< -fts -o$*
+#	grit $< -fts -o$*
 
 -include $(DEPENDS)
  

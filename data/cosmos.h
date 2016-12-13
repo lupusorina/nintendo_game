@@ -4,11 +4,12 @@
 //======================================================================
 //
 //	cosmos, 256x256@8, 
-//	+ palette 256 entries, not compressed
-//	+ bitmap not compressed
-//	Total size: 512 + 65536 = 66048
+//	+ palette 120 entries, not compressed
+//	+ 1021 tiles (t|f reduced) not compressed
+//	+ regular map (flat), not compressed, 32x32 
+//	Total size: 240 + 65344 + 2048 = 67632
 //
-//	Time-stamp: 2016-12-08, 15:45:18
+//	Time-stamp: 2016-12-12, 12:13:01
 //	Exported by Cearn's GBA Image Transmogrifier, v0.8.3
 //	( http://www.coranac.com/projects/#grit )
 //
@@ -17,11 +18,14 @@
 #ifndef GRIT_COSMOS_H
 #define GRIT_COSMOS_H
 
-#define cosmosBitmapLen 65536
-extern const unsigned int cosmosBitmap[16384];
+#define cosmosTilesLen 65344
+extern const unsigned int cosmosTiles[16336];
 
-#define cosmosPalLen 512
-extern const unsigned short cosmosPal[256];
+#define cosmosMapLen 2048
+extern const unsigned short cosmosMap[1024];
+
+#define cosmosPalLen 240
+extern const unsigned short cosmosPal[120];
 
 #endif // GRIT_COSMOS_H
 

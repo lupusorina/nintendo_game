@@ -2,6 +2,7 @@
 #define BACKGROUND_SUB_H_
 
 #include <nds.h>
+#include <../data/shuttle.h>
 #include <../data/cosmos.h>
 
 void init_background_sub();

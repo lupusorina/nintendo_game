@@ -6,7 +6,7 @@
 #include <nds.h>
 #include <stdio.h>
 #include "background_sub.h"
-
+#include "palet.h"
 int main(void) {
 	
     consoleDemoInit();
@@ -14,6 +14,8 @@ int main(void) {
     init_background_sub();
     store_image_background_sub();
 
+    init_background_sub_tiles();
+    place_palet();
     while(1)
         swiWaitForVBlank();	
 }

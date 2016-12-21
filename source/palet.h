@@ -2,8 +2,14 @@
 #define PALET_H_
 
 #include <nds.h>
+#include "memory_org.h"
 
-void init_background_sub_tiles();
-void place_palet();
+#define FRAME_WIDTH 32
+#define FRAME_HEIGHT 24
+void place_paddle_initially();
+void move_palet();
+
+
+
 
 #endif

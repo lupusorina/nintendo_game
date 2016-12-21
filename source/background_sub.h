@@ -2,11 +2,11 @@
 #define BACKGROUND_SUB_H_
 
 #include <nds.h>
-#include <../data/shuttle.h>
-#include <../data/cosmos.h>
+#include <stdio.h>
+#include "../data/cosmos2.h"
+#include "memory_org.h"
 
-void init_background_sub();
-void store_image_background_sub();
-
+void init_background_sub(struct sMemoryBases base);
+void store_image_background_sub(struct sBuf bf);
 
 #endif

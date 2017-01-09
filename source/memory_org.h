@@ -26,4 +26,9 @@ typedef struct sBuf{
 #define OBJ_GAME_TILE_SUB       BG_TILE_RAM_SUB(bases.obj_tile_base)
 #define OBJ_GAME_MAP_SUB        BG_MAP_RAM_SUB(bases.obj_map_base)
 
+#define BG_TILE_MAIN            BG_TILE_RAM(bases.bg_tile_base)
+#define BG_MAP_MAIN				BG_MAP_RAM(bases.bg_map_base)
+#define OBJ_GAME_TILE_MAIN      BG_TILE_RAM(bases.obj_tile_base)
+#define OBJ_GAME_MAP_MAIN       BG_MAP_RAM(bases.obj_map_base)
+
 #endif

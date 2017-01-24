@@ -4,12 +4,12 @@
 @=======================================================================
 @
 @	mars, 256x256@8, 
-@	+ palette 253 entries, not compressed
+@	+ palette 256 entries, not compressed
 @	+ 716 tiles (t|f reduced) not compressed
 @	+ regular map (flat), not compressed, 32x32 
-@	Total size: 506 + 45824 + 2048 = 48378
+@	Total size: 512 + 45824 + 2048 = 48384
 @
-@	Time-stamp: 2017-01-06, 23:33:04
+@	Time-stamp: 2017-01-18, 18:11:22
 @	Exported by Cearn's GBA Image Transmogrifier, v0.8.3
 @	( http://www.coranac.com/projects/#grit )
 @
@@ -1780,7 +1780,7 @@ marsMap:
 
 	.section .rodata
 	.align	2
-	.global marsPal		@ 508 unsigned chars
+	.global marsPal		@ 512 unsigned chars
 marsPal:
 	.hword 0x000E,0x4A7A,0x10D4,0x0019,0x2118,0x0839,0x259C,0x006E
 	.hword 0x73BD,0x10DD,0x0C99,0x211C,0x001B,0x18DD,0x0016,0x083C
@@ -1816,6 +1816,6 @@ marsPal:
 	.hword 0x7BFF,0x2D7A,0x0C5C,0x295B,0x0875,0x257E,0x297E,0x0C7E
 	.hword 0x10FB,0x0438,0x1CFB,0x677F,0x1D19,0x2D79,0x0C94,0x191D
 	.hword 0x0454,0x14DE,0x0895,0x151B,0x2D9D,0x191F,0x14FC,0x14BF
-	.hword 0x257D,0x1CFD,0x0859,0x0459,0x2539
+	.hword 0x257D,0x1CFD,0x0859,0x0459,0x2539,0x08B7,0x2D7E,0x0C35
 
 @}}BLOCK(mars)

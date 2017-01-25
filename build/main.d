@@ -50,7 +50,8 @@ main.o:  \
   /opt/devkitPro/libnds/include/nds/arm9/decompress.h \
   /home/nds/files/project_mes/workspace/Template_arm9/source/mars_simulation.h \
   /home/nds/files/project_mes/workspace/Template_arm9/source/constants.h \
-  /home/nds/files/project_mes/workspace/Template_arm9/source/earth_simulation.h
+  /home/nds/files/project_mes/workspace/Template_arm9/source/earth_simulation.h \
+  /home/nds/files/project_mes/workspace/Template_arm9/build/start_pic.h
 
 /opt/devkitPro/libnds/include/nds.h:
 
@@ -153,3 +154,5 @@ main.o:  \
 /home/nds/files/project_mes/workspace/Template_arm9/source/constants.h:
 
 /home/nds/files/project_mes/workspace/Template_arm9/source/earth_simulation.h:
+
+/home/nds/files/project_mes/workspace/Template_arm9/build/start_pic.h:

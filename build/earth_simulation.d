@@ -1,5 +1,5 @@
-background.o:  \
- /home/nds/files/project_mes/workspace/Template_arm9/source/background.c \
+earth_simulation.o:  \
+ /home/nds/files/project_mes/workspace/Template_arm9/source/earth_simulation.c \
   /opt/devkitPro/libnds/include/nds.h \
   /opt/devkitPro/libnds/include/nds/libversion.h \
   /opt/devkitPro/libnds/include/nds/ndstypes.h \
@@ -48,8 +48,12 @@ background.o:  \
   /opt/devkitPro/libnds/include/nds/arm9/sprite.h \
   /opt/devkitPro/libnds/include/nds/system.h \
   /opt/devkitPro/libnds/include/nds/arm9/decompress.h \
+  /home/nds/files/project_mes/workspace/Template_arm9/source/earth_simulation.h \
   /home/nds/files/project_mes/workspace/Template_arm9/source/constants.h \
-  /home/nds/files/project_mes/workspace/Template_arm9/build/start_pic.h
+  /home/nds/files/project_mes/workspace/Template_arm9/source/background.h \
+  /home/nds/files/project_mes/workspace/Template_arm9/source/ball.h \
+  /home/nds/files/project_mes/workspace/Template_arm9/source/ufo_palet.h \
+  /home/nds/files/project_mes/workspace/Template_arm9/source/brickmap.h
 
 /opt/devkitPro/libnds/include/nds.h:
 
@@ -147,6 +151,14 @@ background.o:  \
 
 /opt/devkitPro/libnds/include/nds/arm9/decompress.h:
 
+/home/nds/files/project_mes/workspace/Template_arm9/source/earth_simulation.h:
+
 /home/nds/files/project_mes/workspace/Template_arm9/source/constants.h:
 
-/home/nds/files/project_mes/workspace/Template_arm9/build/start_pic.h:
+/home/nds/files/project_mes/workspace/Template_arm9/source/background.h:
+
+/home/nds/files/project_mes/workspace/Template_arm9/source/ball.h:
+
+/home/nds/files/project_mes/workspace/Template_arm9/source/ufo_palet.h:
+
+/home/nds/files/project_mes/workspace/Template_arm9/source/brickmap.h:

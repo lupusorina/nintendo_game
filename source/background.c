@@ -8,6 +8,7 @@
 
 #include <nds.h>
 #include "constants.h"
+#include "start_pic.h"
 
 // Init the BG
 void mars_init_bg()

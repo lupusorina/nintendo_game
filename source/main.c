@@ -1,6 +1,7 @@
 #include <nds.h>
 #include "mars_simulation.h"
 #include "earth_simulation.h"
+#include "start_pic.h"
 #include "constants.h"
 
 //struct sMemoryBases bases = {0, 2, 1, 3};
@@ -23,29 +24,25 @@ void ISR_TIMER1()
 	redraw();
 }
 
+void display_start()
+{
+		VRAM_C_CR = VRAM_ENABLE | VRAM_C_SUB_BG;
+		REG_DISPCNT_SUB = MODE_5_2D  | DISPLAY_BG2_ACTIVE;
+	    // Initialize Background
+		BGCTRL_SUB[2] = BG_BMP_BASE(0) | BgSize_B8_256x256 ;//| BG_PRIORITY_0 | BG_WRAP_ON;
+
+	    // Affine Marix Transformation
+	    REG_BG2PA_SUB = 256;
+	    REG_BG2PC_SUB = 0;
+	    REG_BG2PB_SUB = 0;
+	    REG_BG2PD_SUB = 256;
+
+	    swiCopy(start_picBitmap, BG_BMP_RAM_SUB(0), start_picBitmapLen/2);
+		swiCopy(start_picPal, BG_PALETTE_SUB, start_picPalLen/2);;
+}
+
 int main(void) {
-//    consoleDemoInit();
-/*
-    VRAM_A_CR = VRAM_ENABLE | VRAM_A_MAIN_BG;
-    	REG_DISPCNT = MODE_5_2D  | DISPLAY_BG2_ACTIVE;
 
-        // Initialize Background
-    	BGCTRL[2] = BG_BMP_BASE(0) | BgSize_B16_256x256 ;//| BG_PRIORITY_0 | BG_WRAP_ON;
-
-    	   // Affine Marix Transformation
-    	    REG_BG2PA = 256;
-    	    REG_BG2PC = 0;
-    	    REG_BG2PB = 0;
-    	    REG_BG2PD = 256;
-
-        // Fill BG
-        int row, col;
-        for(row=0 ; row<SCREEN_HEIGHT ; ++row){
-    		for(col=0 ; col<SCREEN_WIDTH ; ++col){
-    			GFX_MARS[row*SCREEN_WIDTH + col] = MARS_BG_COLOR;
-    		}
-    	}
-        while(1);*/
 
 
     TIMER_DATA(1) = (TIMER_FREQ_1024(2));
@@ -53,22 +50,10 @@ int main(void) {
 	irqSet(IRQ_TIMER1, &ISR_TIMER1);
 	irqEnable(IRQ_TIMER1);
 
+
     mars_start();
     earth_start();
-
-    //init_background_sub(bases);
-    //init_background_main();
-
-
-    //struct sBuf bg_buf = {BG_TILE_SUB, BG_MAP_SUB, BG_PALETTE_SUB};
-    //store_image_background_sub(bg_buf);
-
-    //struct sBuf bg_buf_main = {BG_TILE_MAIN, BG_MAP_MAIN, BG_PALETTE};
-    //store_image_background_main(bg_buf_main);
-
-
-    //struct sBuf obj_buf = {OBJ_GAME_TILE_SUB, OBJ_GAME_MAP_SUB, BG_PALETTE_SUB};
-    //place_paddle_initially(obj_buf);
+    display_start();
 
     scanKeys();
     /*irqInit();
@@ -91,7 +76,8 @@ int main(void) {
     bool bool_lines_added_earth = false;
     bool bool_earth_lost = false;
 
-    u8 pause = 0;
+    u8 pause = 1;
+    u8 reset = 1;
     while(1){
         scanKeys();
         down = keysDown();
@@ -109,6 +95,13 @@ int main(void) {
 				dir_mars = LEFT;
         }
 
+        if(down & KEY_TOUCH && reset == 1){
+        	mars_restart();
+        	earth_restart();
+        	pause = 1;
+        	reset = 0;
+        }
+
         if (down & KEY_X){
         	if(AI)
         		AI = false;
@@ -117,6 +110,8 @@ int main(void) {
 
         	mars_restart();
 			earth_restart();
+			display_start();
+			reset = 1;
 			TIMER1_CR = TIMER_ENABLE | TIMER_DIV_1024 | TIMER_IRQ_REQ;
 			nb_lines_mars = 0;
 			bool_lines_added_mars = false;
@@ -134,13 +129,19 @@ int main(void) {
 		if ((down & KEY_RIGHT) || (held & KEY_RIGHT) || (down & KEY_A) || (held & KEY_A))
 			dir_earth = LEFT;
 
-		if (down & KEY_START){	// Pause game
+		if (down & KEY_START && reset == 0){	// Pause game
 			pause = (pause+1)%2;
 		}
 
+		if (down & KEY_LID){	// Pause game
+			pause = 1;
+		}
+
         if (down & KEY_SELECT){	// Restart game
+        	reset = 1;
         	mars_restart();
         	earth_restart();
+        	display_start();
         	TIMER1_CR = TIMER_ENABLE | TIMER_DIV_1024 | TIMER_IRQ_REQ;
         	nb_lines_mars = 0;
 			bool_lines_added_mars = false;

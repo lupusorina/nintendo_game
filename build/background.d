@@ -47,7 +47,8 @@ background.o:  \
   /opt/devkitPro/libnds/include/nds/arm9/videoGL.h \
   /opt/devkitPro/libnds/include/nds/arm9/sprite.h \
   /opt/devkitPro/libnds/include/nds/system.h \
-  /opt/devkitPro/libnds/include/nds/arm9/decompress.h
+  /opt/devkitPro/libnds/include/nds/arm9/decompress.h \
+  /home/nds/files/project_mes/workspace/Template_arm9/source/constants.h
 
 /opt/devkitPro/libnds/include/nds.h:
 
@@ -144,3 +145,5 @@ background.o:  \
 /opt/devkitPro/libnds/include/nds/system.h:
 
 /opt/devkitPro/libnds/include/nds/arm9/decompress.h:
+
+/home/nds/files/project_mes/workspace/Template_arm9/source/constants.h:

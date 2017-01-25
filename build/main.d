@@ -49,11 +49,8 @@ main.o:  \
   /opt/devkitPro/libnds/include/nds/system.h \
   /opt/devkitPro/libnds/include/nds/arm9/decompress.h \
   /home/nds/files/project_mes/workspace/Template_arm9/source/mars_simulation.h \
-  /home/nds/files/project_mes/workspace/Template_arm9/source/background_sub.h \
-  /home/nds/files/project_mes/workspace/Template_arm9/source/../data/cosmos2.h \
-  /home/nds/files/project_mes/workspace/Template_arm9/source/memory_org.h \
-  /home/nds/files/project_mes/workspace/Template_arm9/source/palet.h \
-  /home/nds/files/project_mes/workspace/Template_arm9/source/constants.h
+  /home/nds/files/project_mes/workspace/Template_arm9/source/constants.h \
+  /home/nds/files/project_mes/workspace/Template_arm9/source/earth_simulation.h
 
 /opt/devkitPro/libnds/include/nds.h:
 
@@ -153,12 +150,6 @@ main.o:  \
 
 /home/nds/files/project_mes/workspace/Template_arm9/source/mars_simulation.h:
 
-/home/nds/files/project_mes/workspace/Template_arm9/source/background_sub.h:
-
-/home/nds/files/project_mes/workspace/Template_arm9/source/../data/cosmos2.h:
-
-/home/nds/files/project_mes/workspace/Template_arm9/source/memory_org.h:
-
-/home/nds/files/project_mes/workspace/Template_arm9/source/palet.h:
-
 /home/nds/files/project_mes/workspace/Template_arm9/source/constants.h:
+
+/home/nds/files/project_mes/workspace/Template_arm9/source/earth_simulation.h:

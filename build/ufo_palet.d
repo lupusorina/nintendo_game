@@ -50,7 +50,7 @@ ufo_palet.o:  \
   /opt/devkitPro/libnds/include/nds/arm9/decompress.h \
   /home/nds/files/project_mes/workspace/Template_arm9/source/constants.h \
   /home/nds/files/project_mes/workspace/Template_arm9/source/ufo_palet.h \
-  /home/nds/files/project_mes/workspace/Template_arm9/source/../data/ufo.h
+  /home/nds/files/project_mes/workspace/Template_arm9/build/ufo.h
 
 /opt/devkitPro/libnds/include/nds.h:
 
@@ -152,4 +152,4 @@ ufo_palet.o:  \
 
 /home/nds/files/project_mes/workspace/Template_arm9/source/ufo_palet.h:
 
-/home/nds/files/project_mes/workspace/Template_arm9/source/../data/ufo.h:
+/home/nds/files/project_mes/workspace/Template_arm9/build/ufo.h:

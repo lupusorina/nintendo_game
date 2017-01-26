@@ -3,10 +3,9 @@
  *
  *  Created on: Jan 9, 2017
  *      Author: tardyantoine
+ *
  *      Handles the simulation on Mars, interface with the main
  */
-
-// MARS PLAYER SIDE
 
 #include <nds.h>
 #include "mars_simulation.h"
@@ -16,12 +15,15 @@
 #include "ufo_palet.h"
 #include "brickmap.h"
 
-// Global vars
+// ===== GLOBAL VARS ===========================================================
 brick_t brickmap_mars[MAX_ROWS][NB_COLS];	// Maps of the bricks
 u16* sprite_gfx_mars;						// Handle to palet ufo
 int ufo_pos_y_mars;							// Pos of the UFO
-bool bombed_rows_mars[MAX_ROWS];
+bool bombed_rows_mars[MAX_ROWS];			// Bombed rows array
+ball_t ball_mars;							// Ball struct for Mars
 
+// ===== MARS SIM IMPLEMENTATIONS ==============================================
+// Draws the score on Mars
 void mars_draw_score()
 {
 	int row,col;
@@ -48,6 +50,7 @@ void mars_draw_score()
 
 }
 
+// Check the Mars score for level up
 void mars_check_score()
 {
 	if(mars_player.score >= PTS_PER_LVL){	// Lvl up
@@ -104,6 +107,7 @@ int	mars_sim_step(u8 dir, u8 lines_to_add, bool* bool_lines_added, bool* bool_ma
 	return lines_to_add;
 }
 
+// Init Mars player
 void mars_init_player()
 {
 	mars_player.score = 0;
@@ -154,6 +158,7 @@ void mars_wins()
 	}
 }
 
+// AI plays, tries to keep palet under ball (not that smart, are you still there?)
 u8 mars_ai_plays()
 {
 	float bounce_offset = ball_mars.y - (float)((float)ufo_pos_y_mars+(float)HALF_UFO_W);

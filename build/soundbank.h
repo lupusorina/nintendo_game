@@ -1,0 +1,4 @@
+#define MOD_TETRISMIX	0
+#define MSL_NSONGS	1
+#define MSL_NSAMPS	15
+#define MSL_BANKSIZE	16

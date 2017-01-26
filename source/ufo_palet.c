@@ -3,6 +3,7 @@
  *
  *  Created on: Jan 9, 2017
  *      Author: tardyantoine
+ *
  *      Handles the palet ufo movements
  */
 
@@ -11,20 +12,21 @@
 #include "ufo_palet.h"
 #include "ufo.h"
 
-
+// ===== UFO IMPLEMENTATIONS ===================================================
 // Update the position of the palet
 void update_ufo_pos_mars()
 {
 	// Set pos
-	if(AI)
+	if(AI)	// If AI
 		oamSet(&oamMain, 0, ufo_pos_y_mars, UFO_POS_X_MARS, 0,0,SpriteSize_64x32,SpriteColorFormat_256Color,sprite_gfx_mars,-1,false,false,false,false,false);
-	else{
+	else{	// else, mirror screen
 		oamSet(&oamMain, 0, SCREEN_WIDTH -1 -64 - ufo_pos_y_mars, SCREEN_HEIGHT -1 -32 - UFO_POS_X_MARS, 0,0,SpriteSize_64x32,SpriteColorFormat_256Color,sprite_gfx_mars,-1,false,false,true,true,false);
 	}
 		// Display sprite
 	oamUpdate(&oamMain);
 }
 
+// Update Earth UFO pos
 void update_ufo_pos_earth()
 {
 	// Set pos
@@ -49,6 +51,7 @@ void ufo_step_mars(u8 dir)
 	update_ufo_pos_mars();
 }
 
+// Step the UFO sideways
 void ufo_step_earth(u8 dir)
 {
 	if (dir == LEFT){
@@ -82,6 +85,7 @@ void ufo_init_mars()
 	update_ufo_pos_mars();
 }
 
+// Init ufo palet
 void ufo_init_earth()
 {
 	// Palet sprite bank

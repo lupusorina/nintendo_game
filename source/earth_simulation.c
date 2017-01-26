@@ -3,10 +3,9 @@
  *
  *  Created on: Jan 15, 2017
  *      Author: tardyantoine
+ *
   *      Handles the simulation on Earth, interface with the main
  */
-
-// EARTH PLAYER SIDE
 
 #include <nds.h>
 #include "earth_simulation.h"
@@ -17,12 +16,14 @@
 #include "ufo_palet.h"
 #include "brickmap.h"
 
-// Global vars
+// ===== GLOBAL VARS ===========================================================
 brick_t brickmap_earth[MAX_ROWS][NB_COLS];	// Maps of the bricks
 u16* sprite_gfx_earth;						// Handle to palet ufo
-int ufo_pos_y_earth;							// Pos of the UFO
-bool bombed_rows_earth[MAX_ROWS];
+int ufo_pos_y_earth;						// Pos of the UFO
+bool bombed_rows_earth[MAX_ROWS];			// Bombed rows array
 
+// ===== EARTH SIM IMPLEMENTATIONS =============================================
+// Draw score on Earth
 void earth_draw_score()
 {
 	int row,col;
@@ -36,6 +37,7 @@ void earth_draw_score()
 	}
 }
 
+// Check score for level up
 void earth_check_score()
 {
 	if(earth_player.score >= PTS_PER_LVL){	// Lvl up
@@ -60,7 +62,7 @@ int	earth_sim_step(u8 dir, u8 lines_to_add, bool* bool_lines_added, bool* bool_e
 		}
 	}
 
-
+	// Move ball and ufo
 	ufo_step_earth(dir);
 	ball_move(TYPE_EARTH);
 
@@ -94,12 +96,12 @@ int	earth_sim_step(u8 dir, u8 lines_to_add, bool* bool_lines_added, bool* bool_e
 	return lines_to_add;
 }
 
+// Init player
 void earth_init_player()
 {
 	earth_player.score = 0;
 	earth_player.level = 1;
 }
-
 
 // Restart the earth side
 void earth_restart()
@@ -145,6 +147,7 @@ void earth_wins()
 	}
 }
 
+// Redraw the bombs for mars and earth
 void redraw()
 {
 	brickmap_redraw_bombs(TYPE_EARTH);

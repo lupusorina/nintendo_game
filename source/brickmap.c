@@ -9,10 +9,21 @@
 #include <nds.h>
 #include "brickmap.h"
 
-u8 acc_mars_bombs;
-u8 acc_earth_bombs;
-extern u16 bomb_color;
+// ===== GLOBAL VARS ===========================================================
+u8 acc_mars_bombs;		// Accs to know when to add a bomb
+u8 acc_earth_bombs;		// Accs to know when to add a bomb
 
+// ===== BRICKMAP FUNC IMPLEMENTATIONS =========================================
+// Util min val
+int min(int a, int b)
+{
+	if(a <= b)
+		return a;
+	else
+		return b;
+}
+
+// Check if a row was killed by a bomb, returns the number of killed rows
 u16 brickmap_check_killed_row_bomb(u8 type)
 {
 	int i,j;
@@ -23,6 +34,8 @@ u16 brickmap_check_killed_row_bomb(u8 type)
 		bombed_rows = bombed_rows_mars;
 	else
 		bombed_rows = bombed_rows_mars;
+
+	// Use the bombed_rows array to know whick bricks existed before
 	for(i=0 ; i<MAX_ROWS ; ++i){
 		killed = true;
 		if(bombed_rows[i] == true){
@@ -38,7 +51,7 @@ u16 brickmap_check_killed_row_bomb(u8 type)
 	return ret;
 }
 
-// Check if a full row has been killed, in order to add lines to the opponent
+// Check if a full row has been killed, in order to add lines to the opponent, must know whick row was touched
 u16 brickmap_check_killed_row(u8 row, u8 type)
 {
 	int i;
@@ -69,9 +82,10 @@ void brickmap_init(u8 type)
 	brickmap_redraw(type);
 }
 
-// Draws a brick at position row, col
+// Draws a brick at position row, col in type screen
 void draw_brick(int row, int col, u8 type)
 {
+	// Checks where to draw
 	int top,bottom,left,right;
 	if(!AI && type == TYPE_MARS){
 		bottom = SCREEN_HEIGHT - 1 - MARGIN - row*BRICK_H;
@@ -99,6 +113,7 @@ void draw_brick(int row, int col, u8 type)
 		bg_color = EARTH_BG_COLOR;
 	}
 
+	// Draw with correct color
 	for(i = top; i < bottom; i++){
 		for(j = left; j < right; j++){
 			if(cnt<1)
@@ -151,6 +166,7 @@ void brickmap_redraw(u8 type)
 	}
 }
 
+// Redraws only the bombs, for the blinking
 void brickmap_redraw_bombs(u8 type){
 	int i,j;
 	for(i=0 ; i<MAX_ROWS ; ++i){
@@ -161,7 +177,7 @@ void brickmap_redraw_bombs(u8 type){
 	}
 }
 
-// Add a row on top of a player, takes all others down
+// Add nb rows on top of a player, takes all others down, return if player has lost
 int brickmap_add_rows(u8 nb, u8 type)
 {
 	// Check if last row is empty
@@ -171,12 +187,12 @@ int brickmap_add_rows(u8 nb, u8 type)
 	u8* acc;
 	if(type == TYPE_MARS){
 		acc = &acc_mars_bombs;
-		inc = earth_player.level;
+		inc = min(earth_player.level,MAX_CNT);
 	}
 	else
 	{
 		acc = &acc_earth_bombs;
-		inc = mars_player.level;
+		inc = min(mars_player.level,MAX_CNT);
 	}
 	for(row=MAX_ROWS-1 ; row>MAX_ROWS-1-nb ; --row){
 		for(col=0 ; col<NB_COLS ; ++col){

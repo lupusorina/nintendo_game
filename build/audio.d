@@ -1,5 +1,6 @@
-main.o:  \
- /home/nds/files/project_mes/workspace/Template_arm9/source/main.c \
+audio.o:  \
+ /home/nds/files/project_mes/workspace/Template_arm9/source/audio.c \
+  /home/nds/files/project_mes/workspace/Template_arm9/source/audio.h \
   /opt/devkitPro/libnds/include/nds.h \
   /opt/devkitPro/libnds/include/nds/libversion.h \
   /opt/devkitPro/libnds/include/nds/ndstypes.h \
@@ -48,17 +49,12 @@ main.o:  \
   /opt/devkitPro/libnds/include/nds/arm9/sprite.h \
   /opt/devkitPro/libnds/include/nds/system.h \
   /opt/devkitPro/libnds/include/nds/arm9/decompress.h \
-  /home/nds/files/project_mes/workspace/Template_arm9/source/mars_simulation.h \
-  /home/nds/files/project_mes/workspace/Template_arm9/source/constants.h \
-  /home/nds/files/project_mes/workspace/Template_arm9/source/earth_simulation.h \
-  /home/nds/files/project_mes/workspace/Template_arm9/build/start_pic.h \
-  /home/nds/files/project_mes/workspace/Template_arm9/build/start_pic_1v1.h \
-  /home/nds/files/project_mes/workspace/Template_arm9/build/start_top.h \
-  /home/nds/files/project_mes/workspace/Template_arm9/source/audio.h \
   /opt/devkitPro/libnds/include/maxmod9.h \
   /opt/devkitPro/libnds/include/mm_types.h \
   /home/nds/files/project_mes/workspace/Template_arm9/build/soundbank.h \
   /home/nds/files/project_mes/workspace/Template_arm9/build/soundbank_bin.h
+
+/home/nds/files/project_mes/workspace/Template_arm9/source/audio.h:
 
 /opt/devkitPro/libnds/include/nds.h:
 
@@ -155,20 +151,6 @@ main.o:  \
 /opt/devkitPro/libnds/include/nds/system.h:
 
 /opt/devkitPro/libnds/include/nds/arm9/decompress.h:
-
-/home/nds/files/project_mes/workspace/Template_arm9/source/mars_simulation.h:
-
-/home/nds/files/project_mes/workspace/Template_arm9/source/constants.h:
-
-/home/nds/files/project_mes/workspace/Template_arm9/source/earth_simulation.h:
-
-/home/nds/files/project_mes/workspace/Template_arm9/build/start_pic.h:
-
-/home/nds/files/project_mes/workspace/Template_arm9/build/start_pic_1v1.h:
-
-/home/nds/files/project_mes/workspace/Template_arm9/build/start_top.h:
-
-/home/nds/files/project_mes/workspace/Template_arm9/source/audio.h:
 
 /opt/devkitPro/libnds/include/maxmod9.h:
 

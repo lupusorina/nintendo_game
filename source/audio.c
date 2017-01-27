@@ -20,7 +20,7 @@ void audio_init()
 }
 
 // Play music
-void audio_play_music()
+void audio_start_music()
 {
 	//Start playing music in a loop
 	mmStart(MOD_TETRISMIX, MM_PLAY_LOOP);
@@ -29,15 +29,22 @@ void audio_play_music()
 }
 
 // Stop music
-void audio_stop_music()
+void audio_pause_music()
 {
 	//Set module volume to 0 (range 0...1024) using the function mmSetVolume(...)
-	mmSetModuleVolume(0);
+	mmPause();
 }
 
 // Restart music
 void audio_restart_music()
 {
 	//Set module volume to 0 (range 0...1024) using the function mmSetVolume(...)
-	mmSetModuleVolume(512);
+	mmResume();
 }
+
+// Stops music
+void audio_stop_music()
+{
+	mmStop();
+}
+

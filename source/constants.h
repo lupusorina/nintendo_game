@@ -21,17 +21,18 @@
 #define BALL_SPEED_INC_PER_LVL 0.25f	// Speed increment of the ball by level
 #define PENALTY_ROWS 2					// Rows added everytime the ball touches the ground
 #define BRICK_H 10						// Brick height in pixels
-#define BRICK_W 20						// Brick width in pixels
+#define BRICK_W 28						// Brick width in pixels
 #define MAX_X_ROWS 145					// Limit line for the brickmap, separates low zone and brickmap zone, crossing = NEUROTOXIN!
 #define MARGIN  28.0f					// Margin in pixel between the wall and the brickmap
 #define NB_ROWS_INIT MAX_ROWS-3			// Last number defines how many empty rows are at init
+#define TICKS_BEFORE_RESTART 12			// Nb of ticks at 4 Hz before restart (12 == 3 sec)
 
 // Ball
 #define BALL_COLOR		0b1111111111111111 	// Color
 #define BALL_RAD		3					// Radius in pixels
 #define BALL_X_INIT		170					// Initial x position
 #define BALL_Y_INIT		125					// Initial y position
-#define BALL_ANGLE_INIT	120					// Initial angle
+#define BALL_ANGLE_INIT	110					// Initial angle
 #define STEP_INIT		1.5f 				// Init step length in pixel of one ball movement = init speed
 
 // UFO
@@ -105,5 +106,8 @@ typedef struct{			// Player structure
 #define BTYPE_BOMB 		1
 #define NO_SHOCK 		-1
 #define RESULT_BOMB		-2
+#define TIMER_LOST 		0
+#define TIMER_BOMB 		1
+#define TIMER_OFF 		2
 
 #endif /* CONSTANTS_H_ */

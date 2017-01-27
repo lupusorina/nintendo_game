@@ -17,8 +17,9 @@
 
 // ===== AUDIO PROTOTYPES ======================================================
 void audio_init();			// Init music
-void audio_play_music();	// Play music
+void audio_start_music();	// Play music from beginning
 void audio_stop_music();	// Stops music
+void audio_pause_music();	// Pause music
 void audio_restart_music();	// Restart music
 
 #endif /* AUDIO_H_ */

@@ -22,19 +22,30 @@ bool AI = true;									// true: mode vs AI, false: mode vs player
 player_t mars_player;							// Struct representing the mars (top) player
 player_t earth_player;							// Struct representing the earth (sub) player
 u16 bomb_color;									// Color of the bomb bricks, updated by the timer
+u16 timer_mode;									// Bomb for 4Hz blink, Lost for 3 sec before restart
+u16	restart_acc;								// Accumulator for restart
 
 // ===== UTILS =================================================================
 // ISR timer, blink vertical bombs at 2 Hz
 void ISR_TIMER1()
 {
-	// Toggle color
-	if(bomb_color == BOMB_COLOR_1)
-		bomb_color = BOMB_COLOR_2;
-	else
-		bomb_color = BOMB_COLOR_1;
+	if(timer_mode == TIMER_BOMB){
+		// Toggle color
+		if(bomb_color == BOMB_COLOR_1)
+			bomb_color = BOMB_COLOR_2;
+		else
+			bomb_color = BOMB_COLOR_1;
 
-	// Redraw event, for sync, if not in reset mode
-	redraw();
+		// Redraw event, for sync, if not in reset mode
+		redraw();
+		restart_acc = 0;
+	}
+	else if(timer_mode == TIMER_LOST){
+		restart_acc++;
+	}
+	else if(timer_mode == TIMER_OFF){
+		;
+	}
 }
 
 // Display the correct start menus (instructions). Call at reset
@@ -64,13 +75,13 @@ int main(void) {
 
 	// Handle music
 	audio_init();
-	audio_play_music();
 
 	// Setup timer at 4 Hz for the blinking bombs
     TIMER_DATA(1) = (TIMER_FREQ_1024(4));
 	TIMER1_CR = TIMER_ENABLE | TIMER_DIV_1024 | TIMER_IRQ_REQ;
 	irqSet(IRQ_TIMER1, &ISR_TIMER1);
 	irqEnable(IRQ_TIMER1);
+	timer_mode = TIMER_BOMB;
 
 	// Init the game and go to reset screen
     mars_start();
@@ -131,10 +142,24 @@ int main(void) {
 
         // In reset screen, touch to start game (in paused mode)
         if(down & KEY_TOUCH && reset == 1){
-			mars_restart();
-			earth_restart();
-			pause = 1;
-			reset = 0;
+        	// If switch mode is touched, switch mode
+        	if(touch.px > 12 && touch.px < 244 && touch.py > 99 && touch.py < 144){
+        		// Toggle AI
+				if(AI)
+					AI = false;
+				else
+					AI = true;
+
+				// Change screen display mode
+				display_start();
+        	}
+        	else{ // Else start game
+				mars_restart();
+				earth_restart();
+				audio_start_music();
+				pause = 1;
+				reset = 0;
+        	}
         }
 
         // Switch playing mode (toggle AI or PvP)
@@ -148,7 +173,8 @@ int main(void) {
         	// Reset game, goto reset screen and stops blink
 			display_start();
 			reset = 1;
-			TIMER1_CR = (0<<7) | TIMER_DIV_1024 | TIMER_IRQ_REQ; // Disable timer
+			audio_stop_music();
+			timer_mode = TIMER_OFF;
 			nb_lines_mars = 0;
 			bool_lines_added_mars = false;
 			bool_mars_lost = false;
@@ -169,17 +195,18 @@ int main(void) {
 			if (reset == 0){
 				pause = (pause+1)%2;
 				if (pause == 1){
-					audio_stop_music();
-					TIMER1_CR = (0<<7) | TIMER_DIV_1024 | TIMER_IRQ_REQ; // Disable timer
+					audio_pause_music();
+					timer_mode = TIMER_OFF;
 				}
 				else{
 					audio_restart_music();
-		        	TIMER1_CR = TIMER_ENABLE | TIMER_DIV_1024 | TIMER_IRQ_REQ;
+					timer_mode = TIMER_BOMB;
 				}
 			}
 			else if(reset == 1){
 				mars_restart();
 				earth_restart();
+				audio_start_music();
 				pause = 1;
 				reset = 0;
 			}
@@ -188,13 +215,15 @@ int main(void) {
 		// LID = Pause game if lid is closed
 		if (down & KEY_LID){
 			pause = 1;
+			audio_pause_music();
 		}
 
 		// SELECT = Reset game and go to reset screen
         if (down & KEY_SELECT){
+        	audio_stop_music();
         	reset = 1;
         	display_start();
-        	TIMER1_CR = (0<<7) | TIMER_DIV_1024 | TIMER_IRQ_REQ; // Disable timer
+        	timer_mode = TIMER_OFF;
         	nb_lines_mars = 0;
 			bool_lines_added_mars = false;
 			bool_mars_lost = false;
@@ -231,12 +260,40 @@ int main(void) {
         if (bool_mars_lost){
 			mars_loses();
 			earth_wins();
-			TIMER1_CR = (0<<7) | TIMER_DIV_1024 | TIMER_IRQ_REQ; // Disable timer
+			timer_mode = TIMER_LOST;
+			audio_stop_music();
+			if(restart_acc > TICKS_BEFORE_RESTART || down & KEY_START){
+				restart_acc = 0;
+				reset = 1;
+				display_start();
+				timer_mode = TIMER_OFF;
+				nb_lines_mars = 0;
+				bool_lines_added_mars = false;
+				bool_mars_lost = false;
+				nb_lines_earth = 0;
+				bool_lines_added_earth = false;
+				bool_earth_lost = false;
+				pause = 1;
+			}
 		}
         else if (bool_earth_lost){
 			mars_wins();
 			earth_loses();
-			TIMER1_CR = (0<<7) | TIMER_DIV_1024 | TIMER_IRQ_REQ; // Disable timer
+			timer_mode = TIMER_LOST;
+			audio_stop_music();
+			if(restart_acc > TICKS_BEFORE_RESTART || down & KEY_START){
+				restart_acc = 0;
+				reset = 1;
+				display_start();
+				timer_mode = TIMER_OFF;
+				nb_lines_mars = 0;
+				bool_lines_added_mars = false;
+				bool_mars_lost = false;
+				nb_lines_earth = 0;
+				bool_lines_added_earth = false;
+				bool_earth_lost = false;
+				pause = 1;
+			}
 		}
         swiWaitForVBlank();
     }

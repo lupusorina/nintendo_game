@@ -187,12 +187,12 @@ int brickmap_add_rows(u8 nb, u8 type)
 	u8* acc;
 	if(type == TYPE_MARS){
 		acc = &acc_mars_bombs;
-		inc = min(earth_player.level,MAX_CNT);
+		inc = min((int)((earth_player.level+1)/2),MAX_CNT);
 	}
 	else
 	{
 		acc = &acc_earth_bombs;
-		inc = min(mars_player.level,MAX_CNT);
+		inc = min((int)((mars_player.level+1)/2),MAX_CNT);
 	}
 	for(row=MAX_ROWS-1 ; row>MAX_ROWS-1-nb ; --row){
 		for(col=0 ; col<NB_COLS ; ++col){

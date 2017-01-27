@@ -170,10 +170,10 @@ int main(void) {
         	else
         		AI = true;
 
+        	audio_stop_music();
         	// Reset game, goto reset screen and stops blink
 			display_start();
 			reset = 1;
-			audio_stop_music();
 			timer_mode = TIMER_OFF;
 			nb_lines_mars = 0;
 			bool_lines_added_mars = false;

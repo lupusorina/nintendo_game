@@ -1885,7 +1885,7 @@ Linker script and memory map
  .debug_abbrev  0x00002188       0xfc /opt/devkitPro/libnds/lib/libnds9.a(video.o)
  .debug_abbrev  0x00002284       0x12 /opt/devkitPro/devkitARM/lib/gcc/arm-eabi/4.3.3/thumb/crtn.o
 
-.debug_line     0x00000000     0x38eb
+.debug_line     0x00000000     0x38e9
  *(.debug_line)
  .debug_line    0x00000000       0x49 /opt/devkitPro/devkitARM/lib/gcc/arm-eabi/4.3.3/thumb/crti.o
  .debug_line    0x00000049      0x1da audio.o
@@ -1893,24 +1893,24 @@ Linker script and memory map
  .debug_line    0x000003a0      0x2d4 ball.o
  .debug_line    0x00000674      0x212 brickmap.o
  .debug_line    0x00000886      0x1cc earth_simulation.o
- .debug_line    0x00000a52      0x297 main.o
- .debug_line    0x00000ce9      0x1dd mars_simulation.o
- .debug_line    0x00000ec6      0x1f5 ufo_palet.o
- .debug_line    0x000010bb      0x31e /opt/devkitPro/libnds/lib/libnds9.a(initSystem.o)
- .debug_line    0x000013d9      0x2ec /opt/devkitPro/libnds/lib/libnds9.a(keys.o)
- .debug_line    0x000016c5      0x2dc /opt/devkitPro/libnds/lib/libnds9.a(sprite.o)
- .debug_line    0x000019a1      0x2cd /opt/devkitPro/libnds/lib/libnds9.a(sprite_alloc.o)
- .debug_line    0x00001c6e      0x2d1 /opt/devkitPro/libnds/lib/libnds9.a(system.o)
- .debug_line    0x00001f3f      0x27e /opt/devkitPro/libnds/lib/libnds9.a(touch.o)
- .debug_line    0x000021bd      0x1dd /opt/devkitPro/libnds/lib/libnds9.a(trig.o)
- .debug_line    0x0000239a      0x595 /opt/devkitPro/libnds/lib/libnds9.a(videoGL.o)
- .debug_line    0x0000292f      0x936 /opt/devkitPro/libnds/lib/libnds9.a(fifosystem.o)
- .debug_line    0x00003265      0x1d9 /opt/devkitPro/libnds/lib/libnds9.a(interrupts.o)
- .debug_line    0x0000343e       0xa6 /opt/devkitPro/libnds/lib/libnds9.a(dcache.o)
- .debug_line    0x000034e4       0xc5 /opt/devkitPro/libnds/lib/libnds9.a(biosCalls.o)
- .debug_line    0x000035a9       0xc3 /opt/devkitPro/libnds/lib/libnds9.a(interruptDispatcher.o)
- .debug_line    0x0000366c      0x200 /opt/devkitPro/libnds/lib/libnds9.a(video.o)
- .debug_line    0x0000386c       0x7f /opt/devkitPro/devkitARM/lib/gcc/arm-eabi/4.3.3/thumb/crtn.o
+ .debug_line    0x00000a52      0x295 main.o
+ .debug_line    0x00000ce7      0x1dd mars_simulation.o
+ .debug_line    0x00000ec4      0x1f5 ufo_palet.o
+ .debug_line    0x000010b9      0x31e /opt/devkitPro/libnds/lib/libnds9.a(initSystem.o)
+ .debug_line    0x000013d7      0x2ec /opt/devkitPro/libnds/lib/libnds9.a(keys.o)
+ .debug_line    0x000016c3      0x2dc /opt/devkitPro/libnds/lib/libnds9.a(sprite.o)
+ .debug_line    0x0000199f      0x2cd /opt/devkitPro/libnds/lib/libnds9.a(sprite_alloc.o)
+ .debug_line    0x00001c6c      0x2d1 /opt/devkitPro/libnds/lib/libnds9.a(system.o)
+ .debug_line    0x00001f3d      0x27e /opt/devkitPro/libnds/lib/libnds9.a(touch.o)
+ .debug_line    0x000021bb      0x1dd /opt/devkitPro/libnds/lib/libnds9.a(trig.o)
+ .debug_line    0x00002398      0x595 /opt/devkitPro/libnds/lib/libnds9.a(videoGL.o)
+ .debug_line    0x0000292d      0x936 /opt/devkitPro/libnds/lib/libnds9.a(fifosystem.o)
+ .debug_line    0x00003263      0x1d9 /opt/devkitPro/libnds/lib/libnds9.a(interrupts.o)
+ .debug_line    0x0000343c       0xa6 /opt/devkitPro/libnds/lib/libnds9.a(dcache.o)
+ .debug_line    0x000034e2       0xc5 /opt/devkitPro/libnds/lib/libnds9.a(biosCalls.o)
+ .debug_line    0x000035a7       0xc3 /opt/devkitPro/libnds/lib/libnds9.a(interruptDispatcher.o)
+ .debug_line    0x0000366a      0x200 /opt/devkitPro/libnds/lib/libnds9.a(video.o)
+ .debug_line    0x0000386a       0x7f /opt/devkitPro/devkitARM/lib/gcc/arm-eabi/4.3.3/thumb/crtn.o
 
 .debug_frame    0x00000000     0x12e4
  *(.debug_frame)
@@ -1934,7 +1934,7 @@ Linker script and memory map
  .debug_frame   0x00001150       0xb0 /opt/devkitPro/libnds/lib/libnds9.a(interrupts.o)
  .debug_frame   0x00001200       0xe4 /opt/devkitPro/libnds/lib/libnds9.a(video.o)
 
-.debug_str      0x00000000     0x32c8
+.debug_str      0x00000000     0x32c7
  *(.debug_str)
  .debug_str     0x00000000      0x277 audio.o
                                 0x2ce (size before relaxing)
@@ -1946,33 +1946,33 @@ Linker script and memory map
                                 0x3a6 (size before relaxing)
  .debug_str     0x00000af8      0x123 earth_simulation.o
                                 0x38f (size before relaxing)
- .debug_str     0x00000c1b      0x302 main.o
-                                0x702 (size before relaxing)
- .debug_str     0x00000f1d       0xe6 mars_simulation.o
+ .debug_str     0x00000c1b      0x301 main.o
+                                0x701 (size before relaxing)
+ .debug_str     0x00000f1c       0xe6 mars_simulation.o
                                 0x3bf (size before relaxing)
- .debug_str     0x00001003      0x770 ufo_palet.o
+ .debug_str     0x00001002      0x770 ufo_palet.o
                                 0x9e2 (size before relaxing)
- .debug_str     0x00001773      0x1c0 /opt/devkitPro/libnds/lib/libnds9.a(initSystem.o)
+ .debug_str     0x00001772      0x1c0 /opt/devkitPro/libnds/lib/libnds9.a(initSystem.o)
                                 0x39d (size before relaxing)
- .debug_str     0x00001933       0xd0 /opt/devkitPro/libnds/lib/libnds9.a(keys.o)
+ .debug_str     0x00001932       0xd0 /opt/devkitPro/libnds/lib/libnds9.a(keys.o)
                                 0x28b (size before relaxing)
- .debug_str     0x00001a03      0x196 /opt/devkitPro/libnds/lib/libnds9.a(sprite.o)
+ .debug_str     0x00001a02      0x196 /opt/devkitPro/libnds/lib/libnds9.a(sprite.o)
                                 0x765 (size before relaxing)
- .debug_str     0x00001b99      0x11a /opt/devkitPro/libnds/lib/libnds9.a(sprite_alloc.o)
+ .debug_str     0x00001b98      0x11a /opt/devkitPro/libnds/lib/libnds9.a(sprite_alloc.o)
                                 0x612 (size before relaxing)
- .debug_str     0x00001cb3      0x2aa /opt/devkitPro/libnds/lib/libnds9.a(system.o)
+ .debug_str     0x00001cb2      0x2aa /opt/devkitPro/libnds/lib/libnds9.a(system.o)
                                 0x4ad (size before relaxing)
- .debug_str     0x00001f5d       0x74 /opt/devkitPro/libnds/lib/libnds9.a(touch.o)
+ .debug_str     0x00001f5c       0x74 /opt/devkitPro/libnds/lib/libnds9.a(touch.o)
                                 0x1a6 (size before relaxing)
- .debug_str     0x00001fd1       0xbe /opt/devkitPro/libnds/lib/libnds9.a(trig.o)
+ .debug_str     0x00001fd0       0xbe /opt/devkitPro/libnds/lib/libnds9.a(trig.o)
                                 0x199 (size before relaxing)
- .debug_str     0x0000208f      0x4da /opt/devkitPro/libnds/lib/libnds9.a(videoGL.o)
+ .debug_str     0x0000208e      0x4da /opt/devkitPro/libnds/lib/libnds9.a(videoGL.o)
                                 0xc6c (size before relaxing)
- .debug_str     0x00002569      0x714 /opt/devkitPro/libnds/lib/libnds9.a(fifosystem.o)
+ .debug_str     0x00002568      0x714 /opt/devkitPro/libnds/lib/libnds9.a(fifosystem.o)
                                 0x8ff (size before relaxing)
- .debug_str     0x00002c7d      0x13f /opt/devkitPro/libnds/lib/libnds9.a(interrupts.o)
+ .debug_str     0x00002c7c      0x13f /opt/devkitPro/libnds/lib/libnds9.a(interrupts.o)
                                 0x2f0 (size before relaxing)
- .debug_str     0x00002dbc      0x50c /opt/devkitPro/libnds/lib/libnds9.a(video.o)
+ .debug_str     0x00002dbb      0x50c /opt/devkitPro/libnds/lib/libnds9.a(video.o)
                                 0xae7 (size before relaxing)
 
 .debug_loc      0x00000000     0x3e86
@@ -2042,7 +2042,7 @@ LOAD /opt/devkitPro/devkitARM/lib/gcc/arm-eabi/4.3.3/../../../../arm-eabi/lib/th
 END GROUP
 LOAD /opt/devkitPro/devkitARM/lib/gcc/arm-eabi/4.3.3/thumb/crtend.o
 LOAD /opt/devkitPro/devkitARM/lib/gcc/arm-eabi/4.3.3/thumb/crtn.o
-OUTPUT(/home/nds/files/project_mes/workspace/Template_arm9/Template_arm9.elf elf32-littlearm)
+OUTPUT(/home/nds/files/project_mes/workspace/spacebreaker/spacebreaker.elf elf32-littlearm)
 
 .ARM.attributes
                 0x00000000       0x2f

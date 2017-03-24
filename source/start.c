@@ -1,0 +1,54 @@
+
+#include "start.h"
+
+// Background MAIN screen
+
+void draw_bg_main_screen(){
+
+    VRAM_A_CR = VRAM_ENABLE | VRAM_A_MAIN_BG;
+    REG_DISPCNT = MODE_5_2D  | DISPLAY_BG2_ACTIVE;
+
+    // Affine Marix Transformation
+    REG_BG2PA = 256;
+    REG_BG2PC = 0;
+    REG_BG2PB = 0;
+    REG_BG2PD = 256;
+
+    swiCopy(start_topBitmap, BG_BMP_RAM(0), start_topBitmapLen);
+    swiCopy(start_topPal, BG_PALETTE, start_topPalLen);
+}
+
+
+void display_start()
+{
+    // Switch backgrounds to palettes
+    draw_bg_main_screen();
+
+    VRAM_C_CR = VRAM_ENABLE | VRAM_C_SUB_BG;
+    REG_DISPCNT_SUB = MODE_5_2D  | DISPLAY_BG2_ACTIVE;
+
+    BGCTRL[2] =  BG_BMP_BASE(0) | BgSize_B8_256x256 ;   // Main
+    BGCTRL_SUB[2] = BG_BMP_BASE(4) | BgSize_B8_256x256; //Sub
+
+
+    REG_BG2PA_SUB = 256;
+    REG_BG2PC_SUB = 0;
+    REG_BG2PB_SUB = 0;
+    REG_BG2PD_SUB = 256;
+
+    // Print instructions on top screen
+
+
+    // Print start menu on SUB screen
+    /*if(AI){ // AI mode
+        swiCopy(start_picBitmap, BG_BMP_RAM_SUB(0), start_picBitmapLen/2);
+        swiCopy(start_picPal, BG_PALETTE_SUB, start_picPalLen/2);
+    }
+    else{ // PvP mode
+        swiCopy(start_pic_1v1Bitmap, BG_BMP_RAM_SUB(0), start_pic_1v1BitmapLen/2);
+        swiCopy(start_pic_1v1Pal, BG_PALETTE_SUB, start_pic_1v1PalLen/2);
+    */
+
+    //while(1);
+
+}

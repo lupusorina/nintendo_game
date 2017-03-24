@@ -1,1 +1,0 @@
-ufo.o: ufo.s

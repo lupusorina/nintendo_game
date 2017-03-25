@@ -40,10 +40,10 @@ void earth_init_bg()
 {
 	// Init ram
 	VRAM_C_CR = VRAM_ENABLE | VRAM_C_SUB_BG;
-	REG_DISPCNT_SUB = MODE_5_2D | DISPLAY_BG3_ACTIVE;
+	REG_DISPCNT_SUB = MODE_5_2D | DISPLAY_BG2_ACTIVE;
 
     // Initialize Background Sub in 16bits bitmap for halfword access
-	BGCTRL_SUB[3] = BG_BMP_BASE(0) | BgSize_B16_256x256;
+	BGCTRL_SUB[2] = BG_BMP_BASE(0) | BgSize_B16_256x256;
 
     // Affine Marix Transformation
     REG_BG2PA_SUB = 256;

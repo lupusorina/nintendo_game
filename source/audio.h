@@ -22,5 +22,5 @@ void audio_stop_music();	// Stops music
 void audio_pause_music();	// Pause music
 void audio_restart_music();	// Restart music
 void audio_ufo();
-
+void audio_laser();
 #endif /* AUDIO_H_ */

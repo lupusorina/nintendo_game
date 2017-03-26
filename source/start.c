@@ -45,9 +45,9 @@ void init_sub_screen(){
     swiCopy(aliensTiles, BG_TILE_RAM_SUB(1), aliensTilesLen/2);
     swiCopy(aliensPal, BG_PALETTE_SUB, aliensPalLen/2);
 
-    swiCopy(&aliensMap[0], BG_MAP_RAM_SUB(1), 32*12);
-    swiCopy(&aliensMap[32*12], BG_MAP_RAM_SUB(0), 32*13);
-    swiCopy(&aliensMap[32*24], BG_MAP_RAM_SUB(2), 32*13);
+    swiCopy(&aliensMap[0], BG_MAP_RAM_SUB(1), 32*10);
+    swiCopy(&aliensMap[32*11], BG_MAP_RAM_SUB(0), 32*11);
+    swiCopy(&aliensMap[32*24], BG_MAP_RAM_SUB(2), 32*12);
 }
 void draw_start_screen(){
 
@@ -86,10 +86,11 @@ void draw_start_screen(){
         REG_BG2HOFS_SUB = bg1_before;
         delay(5000);
         bg1_before --;
-        delay(5000);
+        //delay(5000);
 
     }
-    swiCopy(&aliensMap[32*38], BG_MAP_RAM_SUB(3), 32*12);
+    audio_laser();
+    swiCopy(&aliensMap[32*38], BG_MAP_RAM_SUB(3), 32*11);
 
 }
 
@@ -133,14 +134,15 @@ void draw_part1(){
 
 void display_start()
 {
- 
-    audio_ufo();
-    delay(20000);
+
     // Switch backgrounds to palettes
     draw_bg_main_screen();
     draw_start_screen();
     delay(20000);
-    draw_part1();
+
+    //audio_ufo();
+    delay(20000);
+    //draw_part1();
     // Print instructions on top screen
 
 

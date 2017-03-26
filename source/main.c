@@ -47,6 +47,7 @@ void ISR_TIMER1()
 }
 
 
+
 // ===== MAIN CORE =============================================================
 int main(void) {
 
@@ -58,10 +59,12 @@ int main(void) {
 	TIMER1_CR = TIMER_ENABLE | TIMER_DIV_1024 | TIMER_IRQ_REQ;
 	irqSet(IRQ_TIMER1, &ISR_TIMER1);
 	irqEnable(IRQ_TIMER1);
+
+
 	timer_mode = TIMER_BOMB;
 
 	// Init the game and go to reset screen
-    
+
     mars_start();
     earth_start();
     display_start();
@@ -101,9 +104,12 @@ int main(void) {
         // Handle touches if game running, sends directions to Earth
         touchRead(&touch);
         // Note: Send direction and not position, otherwise big advantage for touchscreen player
+
     	if(touch.px){
-    		if(touch.px < 128)
+
+    		if(touch.px < 128){
     			dir_earth = RIGHT;
+            }
     		else
     			dir_earth = LEFT;
     	}
@@ -122,7 +128,7 @@ int main(void) {
         // In reset screen, touch to start game (in paused mode)
         if(down & KEY_TOUCH && reset == 1){
         	// If switch mode is touched, switch mode
-        	if(touch.px > 12 && touch.px < 244 && touch.py > 99 && touch.py < 144){
+        	if(touch.px > 10 && touch.px < 244 && touch.py > 99 && touch.py < 144){
         		// Toggle AI
 				if(AI)
 					AI = false;
@@ -279,5 +285,4 @@ int main(void) {
     return 0;
 }
 
-// The cake is a lie...
 

@@ -1,14 +1,17 @@
 
 #include "start.h"
-#include "01_hello.h"
+
 #include "aliens.h"
+#include "ai_vs_human.h"
+
 // Background MAIN screen
-
-void draw_bg_main_screen(){
-
+void init_main_screen(){
     VRAM_A_CR = VRAM_ENABLE | VRAM_A_MAIN_BG;
     REG_DISPCNT = MODE_5_2D  | DISPLAY_BG2_ACTIVE | DISPLAY_BG1_ACTIVE;
     BGCTRL[2] =  BG_BMP_BASE(0) | BgSize_B8_256x256 ;   // Main
+}
+
+void draw_bg_main_screen(){
 
     // Affine Marix Transformation
     REG_BG2PA = 256;
@@ -81,6 +84,7 @@ void draw_start_screen(){
 
     int i;
     while (bg1_before !=  bg1_after){
+
         REG_BG1HOFS_SUB = bg1_before;
         REG_BG0HOFS_SUB = -bg1_before;
         REG_BG2HOFS_SUB = bg1_before;
@@ -90,7 +94,7 @@ void draw_start_screen(){
 
     }
     audio_laser();
-    swiCopy(&aliensMap[32*38], BG_MAP_RAM_SUB(3), 32*11);
+    swiCopy(&aliensMap[32*38], BG_MAP_RAM_SUB(3), 32*10);
 
 }
 
@@ -111,6 +115,9 @@ void draw_part1(){
     int bg2_after_h = 90;
     int bg2_after_v = -10;
 
+    int bg3_h = 0;
+    int bg3_v = -90;
+
     while (bg2_before_h != bg2_after_h){
         bg2_before_h = bg2_before_h + 2;
         REG_BG2HOFS_SUB = bg2_before_h;
@@ -118,44 +125,75 @@ void draw_part1(){
             REG_BG2VOFS_SUB = bg2_after_v;
         else
             bg2_before_v = bg2_before_v + 1;
+
+        REG_BG3HOFS_SUB = bg3_h;
+        REG_BG3VOFS_SUB = bg3_v;
         delay(10000);
 
     }
-    int bg3_h = 0;
-    int bg3_v = -90;
 
     REG_BG3HOFS_SUB = bg3_h;
     REG_BG3VOFS_SUB = bg3_v;
-    swiCopy(&aliensMap[32*50], BG_MAP_RAM_SUB(3), 32*7);
     delay(10000);
 
 
 }
 
+void ISR_TIMER0(){
+    int static count = 0;
+    count ++;
+    if (count == 3){
+
+    }
+    if (count == 62){
+        selection_mode_screen();
+    }
+
+
+}
+
+void selection_mode_screen(){
+    audio_stop_music();
+    int offset_v = 0, offset_h = 0;
+    REG_BG0HOFS_SUB = offset_v;
+    REG_BG0VOFS_SUB = offset_h;
+    swiCopy(ai_vs_humanTiles, BG_TILE_RAM_SUB(1), ai_vs_humanTilesLen/2);
+    swiCopy(ai_vs_humanPal, BG_PALETTE_SUB, ai_vs_humanPalLen/2);
+    swiCopy(&ai_vs_humanMap[0], BG_MAP_RAM_SUB(0), 32*32);
+
+
+}
+
+
 void display_start()
 {
 
+
+    TIMER_DATA(0) = (TIMER_FREQ_1024(1));
+    TIMER0_CR = TIMER_ENABLE | TIMER_DIV_1024 | TIMER_IRQ_REQ;
+    irqSet(IRQ_TIMER0, &ISR_TIMER0);
+    irqEnable(IRQ_TIMER0);
+
     // Switch backgrounds to palettes
+    init_main_screen();
     draw_bg_main_screen();
     draw_start_screen();
-    delay(20000);
+    delay(2000000);
 
-    //audio_ufo();
-    delay(20000);
-    //draw_part1();
+
+    draw_part1();
     // Print instructions on top screen
+    delay(2000000);
+    audio_ufo();
+    delay(5000000);
+    int bg3_h = 0;
+    int bg3_v = -140;
+    REG_BG3HOFS_SUB = bg3_h;
+    REG_BG3VOFS_SUB = bg3_v;
+    swiCopy(&aliensMap[32*48], BG_MAP_RAM_SUB(3), 32*7);
 
 
-    // Print start menu on SUB screen
-    /*if(AI){ // AI mode
-        swiCopy(start_picBitmap, BG_BMP_RAM_SUB(0), start_picBitmapLen/2);
-        swiCopy(start_picPal, BG_PALETTE_SUB, start_picPalLen/2);
-    }
-    else{ // PvP mode
-        swiCopy(start_pic_1v1Bitmap, BG_BMP_RAM_SUB(0), start_pic_1v1BitmapLen/2);
-        swiCopy(start_pic_1v1Pal, BG_PALETTE_SUB, start_pic_1v1PalLen/2);
-    */
-
-
+    //swiCopy(start_topBitmap, BG_BMP_RAM(0), start_topBitmapLen/2);
+    //swiCopy(start_topPal, BG_PALETTE, start_topPalLen/2);
 
 }

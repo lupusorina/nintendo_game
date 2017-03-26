@@ -1,38 +1,18 @@
-Hello Human,
-
+Hello, Human,
 We are Rob, Bob and Hilbert
-
-We come from Mars, but our families decided to give us Earth names. That's great!
-
-
+We come from Mars. Look above! That's a great planet to live on!
 We want to be your friends. Let's play together!
-
-
 These are the instructions.
 If you want to skip them, click anywhere on the screen to start the game.
-
-
 This game has two modes. You can either play with us or with your friends.
-
-
-Look above. These are the control for you.
-
-
+Use the A, Y, B, X keypads on the right to control the paddle. Your friend can use the right and left buttons or the arrow keys.
 Don't forget to rotate your screen when you play with your friends.
-
-
 You need to kill all the rows to win.
 Sometimes, there are bombs appearing. Don't panic. These are good bombs, they will bring you points.
-
 As the level increases, it will be more and more difficult to kill a brick. Don't give up!
+You need to make sure that your bricks are not exceeding the line in order not to lose.
+Good luck!
 
 
-You need to make sure that your bricks are not exceeding the line.
-
-
-
-At the end of the game, the score is displayed.
-
-You will also have a surprise. That's great! Let's play.
 
 

@@ -17,9 +17,16 @@ void audio_init()
 	mmInitDefaultMem((mm_addr)soundbank_bin);
 	//Load module
 	mmLoad(MOD_TETRISMIX);
+    mmLoad(MOD_ALIENHORIZON);
+    
 }
 
 // Play music
+void audio_ufo(){
+    mmStart(MOD_ALIENHORIZON, MM_PLAY_LOOP);
+    //Set module volume to 512 (range 0...1024) using the function mmSetVolume(...)
+    mmSetModuleVolume(512);
+}
 void audio_start_music()
 {
 	//Start playing music in a loop

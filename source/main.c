@@ -61,10 +61,12 @@ int main(void) {
 	timer_mode = TIMER_BOMB;
 
 	// Init the game and go to reset screen
-    display_start();
+    
     mars_start();
     earth_start();
     display_start();
+
+    //display_start();
     // Handle the scanning problem (non empty at boot)
     scanKeys();
     irqEnable(IRQ_VBLANK);

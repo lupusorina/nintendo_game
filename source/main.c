@@ -88,7 +88,6 @@ int main(void) {
     u8 pause = 1;							// 1 = game paused, 0 = game running
     u8 reset = 1;							// 1 = reset screen, o = game on!!!
     touchPosition touch;					// Stores the touch position
-
     // ===== FINITE STATE MACHINE, GlaDOS MAIN CORE ============================
     while(1){
 
@@ -99,11 +98,38 @@ int main(void) {
 
         dir_mars = NONE;
         dir_earth = NONE;
-
         // === KEYS HANDLER ====================================================
         // Handle touches if game running, sends directions to Earth
         touchRead(&touch);
         // Note: Send direction and not position, otherwise big advantage for touchscreen player
+
+
+        if (reset == 1)
+        {
+            if (down & KEY_TOUCH){
+                int flag_AI = 2;
+                flag_AI =  selection_mode_screen();
+                    if (flag_AI == 1){
+                        // Toggle AI
+                        mmEffectCancelAll(SFX_STARTUFO);
+                        AI = true;
+                        mars_restart();
+                        earth_restart();
+                        audio_start_music();
+                        pause = 1;
+                        reset = 0;
+                    }else{
+                        mmEffectCancelAll(SFX_STARTUFO);
+                        AI = false;
+                        mars_restart();
+                        earth_restart();
+                        audio_start_music();
+                        pause = 1;
+                        reset = 0;
+                    }
+
+            }
+        }
 
     	if(touch.px){
 
@@ -126,26 +152,7 @@ int main(void) {
         }
 
         // In reset screen, touch to start game (in paused mode)
-        if(down & KEY_TOUCH && reset == 1){
-        	// If switch mode is touched, switch mode
-        	if(touch.px > 10 && touch.px < 244 && touch.py > 99 && touch.py < 144){
-        		// Toggle AI
-				if(AI)
-					AI = false;
-				else
-					AI = true;
 
-				// Change screen display mode
-				display_start();
-        	}
-        	else{ // Else start game
-				mars_restart();
-				earth_restart();
-				audio_start_music();
-				pause = 1;
-				reset = 0;
-        	}
-        }
 
         // Switch playing mode (toggle AI or PvP)
         if (down & KEY_X){
@@ -157,7 +164,6 @@ int main(void) {
 
         	audio_stop_music();
         	// Reset game, goto reset screen and stops blink
-			display_start();
 			reset = 1;
 			timer_mode = TIMER_OFF;
 			nb_lines_mars = 0;
@@ -177,6 +183,7 @@ int main(void) {
 
 		// START = Toggle pause if not in reset screen
 		if (down & KEY_START){
+            mmEffectCancelAll(SFX_STARTUFO);
 			if (reset == 0){
 				pause = (pause+1)%2;
 				if (pause == 1){
@@ -184,6 +191,7 @@ int main(void) {
 					timer_mode = TIMER_OFF;
 				}
 				else{
+                    mmEffectCancelAll(SFX_STARTUFO);
 					audio_restart_music();
 					timer_mode = TIMER_BOMB;
 				}
@@ -207,7 +215,10 @@ int main(void) {
         if (down & KEY_SELECT){
         	audio_stop_music();
         	reset = 1;
-        	display_start();
+            mmEffectCancelAll(SFX_STARTUFO);
+        	mars_restart();
+            earth_restart();
+            display_start();
         	timer_mode = TIMER_OFF;
         	nb_lines_mars = 0;
 			bool_lines_added_mars = false;
@@ -250,6 +261,8 @@ int main(void) {
 			if(restart_acc > TICKS_BEFORE_RESTART || down & KEY_START){
 				restart_acc = 0;
 				reset = 1;
+                mars_restart();
+                earth_restart();
 				display_start();
 				timer_mode = TIMER_OFF;
 				nb_lines_mars = 0;
@@ -269,6 +282,8 @@ int main(void) {
 			if(restart_acc > TICKS_BEFORE_RESTART || down & KEY_START){
 				restart_acc = 0;
 				reset = 1;
+                mars_start();
+                earth_start();
 				display_start();
 				timer_mode = TIMER_OFF;
 				nb_lines_mars = 0;
@@ -278,6 +293,7 @@ int main(void) {
 				bool_lines_added_earth = false;
 				bool_earth_lost = false;
 				pause = 1;
+
 			}
 		}
         swiWaitForVBlank();

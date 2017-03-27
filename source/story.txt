@@ -1,16 +1,14 @@
 Hello, Human,
 We are Rob, Bob and Hilbert
 We come from Mars. Look above! That's a great planet to live on!
-We want to be your friends. Let's play together!
-These are the instructions.
-If you want to skip them, click anywhere on the screen to start the game.
-This game has two modes. You can either play with us or with your friends.
-Use the A, Y, B, X keypads on the right to control the paddle. Your friend can use the right and left buttons or the arrow keys.
-Don't forget to rotate your screen when you play with your friends.
+Let's play together Spacebreaker. These are the instructions.
+If you want to skip them, click anywhere on the screen.
+This game has two modes. You can play with us or with your friends.
+Use the keypads on the right to control the paddle, while our friend can use the right and left buttons or the arrow keys.
 You need to kill all the rows to win.
-Sometimes, there are bombs appearing. Don't panic. These are good bombs, they will bring you points.
+Sometimes, there are bombs appearing. Don't panic. These are good bombs which bring points.
 As the level increases, it will be more and more difficult to kill a brick. Don't give up!
-You need to make sure that your bricks are not exceeding the line in order not to lose.
+To win, you need to make sure that your bricks are not exceeding the line.
 Good luck!
 
 

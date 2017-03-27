@@ -39,11 +39,6 @@ void init_sub_screen(){
     BGCTRL_SUB[2] = BG_COLOR_256 | BG_MAP_BASE(2) | BG_TILE_BASE(1) | BG_32x32;
     BGCTRL_SUB[3] = BG_COLOR_256 | BG_MAP_BASE(3) | BG_TILE_BASE(1) | BG_32x32;
 
-    // Affine Marix Transformation
-    REG_BG2PA_SUB = 256;
-    REG_BG2PC_SUB = 0;
-    REG_BG2PB_SUB = 0;
-    REG_BG2PD_SUB = 256;
 
     swiCopy(aliensTiles, BG_TILE_RAM_SUB(1), aliensTilesLen/2);
     swiCopy(aliensPal, BG_PALETTE_SUB, aliensPalLen/2);
@@ -138,22 +133,21 @@ void draw_part1(){
 
 
 }
-
+int count = 0;
 void ISR_TIMER0(){
-    int static count = 0;
-    count ++;
-    if (count == 3){
 
-    }
-    if (count == 62){
+    count ++;
+
+    if (count == 52){
         selection_mode_screen();
     }
 
 
 }
 
-void selection_mode_screen(){
-    audio_stop_music();
+int selection_mode_screen(){
+    mmEffectCancelAll();
+    init_sub_screen();
     int offset_v = 0, offset_h = 0;
     REG_BG0HOFS_SUB = offset_v;
     REG_BG0VOFS_SUB = offset_h;
@@ -161,14 +155,28 @@ void selection_mode_screen(){
     swiCopy(ai_vs_humanPal, BG_PALETTE_SUB, ai_vs_humanPalLen/2);
     swiCopy(&ai_vs_humanMap[0], BG_MAP_RAM_SUB(0), 32*32);
 
+    int selection_was_made = 0;
+
+    while (selection_was_made == 0){
+        scanKeys();
+        unsigned down = keysDown();
+        touchPosition touch;
+        touchRead(&touch);
+
+        if (down & KEY_TOUCH) {
+            if(touch.px > 0 && touch.px < 130)
+                return 1;
+            else
+                return 0;
+        }
+    }
 
 }
 
 
 void display_start()
 {
-
-
+    count = 0;
     TIMER_DATA(0) = (TIMER_FREQ_1024(1));
     TIMER0_CR = TIMER_ENABLE | TIMER_DIV_1024 | TIMER_IRQ_REQ;
     irqSet(IRQ_TIMER0, &ISR_TIMER0);
@@ -179,13 +187,11 @@ void display_start()
     draw_bg_main_screen();
     draw_start_screen();
     delay(2000000);
-
-
     draw_part1();
-    // Print instructions on top screen
     delay(2000000);
     audio_ufo();
     delay(5000000);
+
     int bg3_h = 0;
     int bg3_v = -140;
     REG_BG3HOFS_SUB = bg3_h;
@@ -193,7 +199,5 @@ void display_start()
     swiCopy(&aliensMap[32*48], BG_MAP_RAM_SUB(3), 32*7);
 
 
-    //swiCopy(start_topBitmap, BG_BMP_RAM(0), start_topBitmapLen/2);
-    //swiCopy(start_topPal, BG_PALETTE, start_topPalLen/2);
 
 }

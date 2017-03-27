@@ -31,7 +31,7 @@ void audio_ufo(){
 void audio_laser(){
     mmEffect(SFX_LASER);
     //Set module volume to 512 (range 0...1024) using the function mmSetVolume(...)
-    mmSetModuleVolume(512);
+    mmSetModuleVolume(1024);
 }
 
 void audio_start_music()
